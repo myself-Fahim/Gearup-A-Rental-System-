@@ -15,8 +15,6 @@ model User {
     updated_At DateTime @updatedAt
 
     gears Gear[]
-
     orders Order[]
-
     reviews Review[]
 }

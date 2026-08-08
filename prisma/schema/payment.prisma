@@ -7,8 +7,11 @@ enum PaymentStatus {
 
 enum PaymentMethod {
   CASH
-  CARD
   MOBILE_BANKING
+}
+enum PaymentProvider {
+  STRIPE
+  SSLCOMMERZ
 }
 
 
@@ -19,7 +22,7 @@ model Payment {
   method         PaymentMethod
   transaction_id String?       @unique
   amount         Decimal
-  provider       String?
+  provider       PaymentProvider?
   paidAt         DateTime      @default(now())
   
   order          Order         @relation(fields: [order_id], references: [id])

@@ -12,6 +12,5 @@ model Gear {
     category Category @relation(fields: [category_id], references: [id])
 
     orders Order[]
-
     reviews Review[]
 }
