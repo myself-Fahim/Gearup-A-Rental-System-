@@ -1,0 +1,26 @@
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  MOBILE_BANKING
+}
+
+
+model Payment {
+  id             String        @id @default(uuid())
+  order_id       String        @unique
+  status         PaymentStatus @default(PENDING)
+  method         PaymentMethod
+  transaction_id String?       @unique
+  amount         Decimal
+  provider       String?
+  paidAt         DateTime      @default(now())
+  
+  order          Order         @relation(fields: [order_id], references: [id])
+}

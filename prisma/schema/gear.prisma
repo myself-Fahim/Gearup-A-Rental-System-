@@ -1,0 +1,17 @@
+model Gear {
+    id              String   @id @default(uuid())
+    provider_id     String
+    category_id     String
+    name            String
+    price_per_day   Decimal
+    available_stock Int
+    created_At      DateTime @default(now())
+    updated_At      DateTime @updatedAt
+
+    provider User     @relation(fields: [provider_id], references: [id])
+    category Category @relation(fields: [category_id], references: [id])
+
+    orders Order[]
+
+    reviews Review[]
+}

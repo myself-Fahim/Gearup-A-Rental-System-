@@ -1,0 +1,23 @@
+enum Order_Status {
+    CONFIRM
+    PENDING
+    CANCELED
+}
+
+
+model Order {
+  id     String   @id @default(uuid())
+  customer_id  String
+  gear_id      String
+  status       Order_Status @default(PENDING)
+  total_amount Decimal
+  startDate    DateTime
+  endDate      DateTime
+  created_At   DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  customer     User     @relation(fields: [customer_id], references: [id])
+  gear         Gear     @relation(fields: [gear_id], references: [id])
+
+  payments Payment[]
+}
