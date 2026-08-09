@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import prisma from '../src/lib/prisma';
 import { Order_Status, PaymentMethod, PaymentProvider, PaymentStatus, Role } from './generated/prisma/enums';
-import type { Decimal } from '@prisma/client/runtime/index-browser';
 import { randomUUID } from 'node:crypto';
 
 async function main() {
