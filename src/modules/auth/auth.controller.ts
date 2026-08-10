@@ -3,6 +3,7 @@ import { CatchAsync } from "../../utils/catch-async";
 import { loginSchema, registerSchema } from "./auth.validation";
 import { authService } from "./auth.service";
 import { SendResponse } from "../../utils/send-response";
+import z from "zod";
 
 const registerUser = CatchAsync(async (req: Request, res: Response) => {
     const input = registerSchema.parse(req.body)
@@ -29,17 +30,18 @@ const loginUser = CatchAsync(async (req: Request, res: Response) => {
 
 })
 
-const myProfile = CatchAsync(async (req: Request, res: Response) => {
+const myProfileSchema = z.uuid()
 
-    const result = await authService.myProfile(req.user?.id as string)
+const myProfile = CatchAsync(async (req: Request, res: Response) => {
+    
+    const id = myProfileSchema.parse(req.user?.id)
+    const result = await authService.myProfile(id)
     SendResponse(res, 200,
         {
             success: true,
             message: "Profile retreive successfully",
             data: result
         })
-
-
 })
 
 

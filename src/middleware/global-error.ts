@@ -21,17 +21,18 @@ export const globarErrorHandler: ErrorRequestHandler = (err, req, res, next) => 
     }
 
     else if (err instanceof PrismaClientKnownRequestError) {
-        if (err.code = "P2002") {
+
+        if (err.code === "P2002") {
             statusCode = 400;
             message = "Duplicate Value"
         }
-        else if (err.code = "P2025") {
+        else if (err.code === "P2025") {
             statusCode = 400;
             message = "Not found in database"
         }
-        else if (err.code = "P2002") {
+        else if (err.code === "P2003") {
             statusCode = 400;
-            message = "Duplicate Value"
+            message = "Foreign key constraint failed"
         }
         else {
             statusCode = 400;
