@@ -5,6 +5,7 @@ model Gear {
     name            String
     price_per_day   Decimal
     available_stock Int
+    is_available    Boolean  @default(true)
     created_At      DateTime @default(now())
     updated_At      DateTime @updatedAt
 

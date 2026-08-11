@@ -9,7 +9,7 @@ router.post('/',auth(Role.PROVIDER),gearController.createGear)
 router.get('/categories',gearController.getGearCategory) 
 router.get('/:id',gearController.getGearById)
 router.patch('/:id',auth(Role.PROVIDER),gearController.updateGearById)
-router.delete('/:id',auth(Role.ADMIN,Role.PROVIDER),gearController.deleteGearById)
+router.delete('/:id',auth(Role.PROVIDER),gearController.deleteGearById)
 
 
 

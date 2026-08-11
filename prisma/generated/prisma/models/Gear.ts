@@ -43,6 +43,7 @@ export type GearMinAggregateOutputType = {
   name: string | null
   price_per_day: runtime.Decimal | null
   available_stock: number | null
+  is_available: boolean | null
   created_At: Date | null
   updated_At: Date | null
 }
@@ -54,6 +55,7 @@ export type GearMaxAggregateOutputType = {
   name: string | null
   price_per_day: runtime.Decimal | null
   available_stock: number | null
+  is_available: boolean | null
   created_At: Date | null
   updated_At: Date | null
 }
@@ -65,6 +67,7 @@ export type GearCountAggregateOutputType = {
   name: number
   price_per_day: number
   available_stock: number
+  is_available: number
   created_At: number
   updated_At: number
   _all: number
@@ -88,6 +91,7 @@ export type GearMinAggregateInputType = {
   name?: true
   price_per_day?: true
   available_stock?: true
+  is_available?: true
   created_At?: true
   updated_At?: true
 }
@@ -99,6 +103,7 @@ export type GearMaxAggregateInputType = {
   name?: true
   price_per_day?: true
   available_stock?: true
+  is_available?: true
   created_At?: true
   updated_At?: true
 }
@@ -110,6 +115,7 @@ export type GearCountAggregateInputType = {
   name?: true
   price_per_day?: true
   available_stock?: true
+  is_available?: true
   created_At?: true
   updated_At?: true
   _all?: true
@@ -208,6 +214,7 @@ export type GearGroupByOutputType = {
   name: string
   price_per_day: runtime.Decimal
   available_stock: number
+  is_available: boolean
   created_At: Date
   updated_At: Date
   _count: GearCountAggregateOutputType | null
@@ -242,6 +249,7 @@ export type GearWhereInput = {
   name?: Prisma.StringFilter<"Gear"> | string
   price_per_day?: Prisma.DecimalFilter<"Gear"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFilter<"Gear"> | number
+  is_available?: Prisma.BoolFilter<"Gear"> | boolean
   created_At?: Prisma.DateTimeFilter<"Gear"> | Date | string
   updated_At?: Prisma.DateTimeFilter<"Gear"> | Date | string
   provider?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -257,6 +265,7 @@ export type GearOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   price_per_day?: Prisma.SortOrder
   available_stock?: Prisma.SortOrder
+  is_available?: Prisma.SortOrder
   created_At?: Prisma.SortOrder
   updated_At?: Prisma.SortOrder
   provider?: Prisma.UserOrderByWithRelationInput
@@ -275,6 +284,7 @@ export type GearWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Gear"> | string
   price_per_day?: Prisma.DecimalFilter<"Gear"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFilter<"Gear"> | number
+  is_available?: Prisma.BoolFilter<"Gear"> | boolean
   created_At?: Prisma.DateTimeFilter<"Gear"> | Date | string
   updated_At?: Prisma.DateTimeFilter<"Gear"> | Date | string
   provider?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -290,6 +300,7 @@ export type GearOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   price_per_day?: Prisma.SortOrder
   available_stock?: Prisma.SortOrder
+  is_available?: Prisma.SortOrder
   created_At?: Prisma.SortOrder
   updated_At?: Prisma.SortOrder
   _count?: Prisma.GearCountOrderByAggregateInput
@@ -309,6 +320,7 @@ export type GearScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Gear"> | string
   price_per_day?: Prisma.DecimalWithAggregatesFilter<"Gear"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntWithAggregatesFilter<"Gear"> | number
+  is_available?: Prisma.BoolWithAggregatesFilter<"Gear"> | boolean
   created_At?: Prisma.DateTimeWithAggregatesFilter<"Gear"> | Date | string
   updated_At?: Prisma.DateTimeWithAggregatesFilter<"Gear"> | Date | string
 }
@@ -318,6 +330,7 @@ export type GearCreateInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   provider: Prisma.UserCreateNestedOneWithoutGearsInput
@@ -333,6 +346,7 @@ export type GearUncheckedCreateInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutGearInput
@@ -344,6 +358,7 @@ export type GearUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   provider?: Prisma.UserUpdateOneRequiredWithoutGearsNestedInput
@@ -359,6 +374,7 @@ export type GearUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutGearNestedInput
@@ -372,6 +388,7 @@ export type GearCreateManyInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
 }
@@ -381,6 +398,7 @@ export type GearUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -392,6 +410,7 @@ export type GearUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -413,6 +432,7 @@ export type GearCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   price_per_day?: Prisma.SortOrder
   available_stock?: Prisma.SortOrder
+  is_available?: Prisma.SortOrder
   created_At?: Prisma.SortOrder
   updated_At?: Prisma.SortOrder
 }
@@ -429,6 +449,7 @@ export type GearMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   price_per_day?: Prisma.SortOrder
   available_stock?: Prisma.SortOrder
+  is_available?: Prisma.SortOrder
   created_At?: Prisma.SortOrder
   updated_At?: Prisma.SortOrder
 }
@@ -440,6 +461,7 @@ export type GearMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   price_per_day?: Prisma.SortOrder
   available_stock?: Prisma.SortOrder
+  is_available?: Prisma.SortOrder
   created_At?: Prisma.SortOrder
   updated_At?: Prisma.SortOrder
 }
@@ -510,6 +532,10 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type GearCreateNestedOneWithoutOrdersInput = {
@@ -587,6 +613,7 @@ export type GearCreateWithoutCategoryInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   provider: Prisma.UserCreateNestedOneWithoutGearsInput
@@ -600,6 +627,7 @@ export type GearUncheckedCreateWithoutCategoryInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutGearInput
@@ -642,6 +670,7 @@ export type GearScalarWhereInput = {
   name?: Prisma.StringFilter<"Gear"> | string
   price_per_day?: Prisma.DecimalFilter<"Gear"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFilter<"Gear"> | number
+  is_available?: Prisma.BoolFilter<"Gear"> | boolean
   created_At?: Prisma.DateTimeFilter<"Gear"> | Date | string
   updated_At?: Prisma.DateTimeFilter<"Gear"> | Date | string
 }
@@ -651,6 +680,7 @@ export type GearCreateWithoutOrdersInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   provider: Prisma.UserCreateNestedOneWithoutGearsInput
@@ -665,6 +695,7 @@ export type GearUncheckedCreateWithoutOrdersInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutGearInput
@@ -691,6 +722,7 @@ export type GearUpdateWithoutOrdersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   provider?: Prisma.UserUpdateOneRequiredWithoutGearsNestedInput
@@ -705,6 +737,7 @@ export type GearUncheckedUpdateWithoutOrdersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutGearNestedInput
@@ -715,6 +748,7 @@ export type GearCreateWithoutReviewsInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   provider: Prisma.UserCreateNestedOneWithoutGearsInput
@@ -729,6 +763,7 @@ export type GearUncheckedCreateWithoutReviewsInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutGearInput
@@ -755,6 +790,7 @@ export type GearUpdateWithoutReviewsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   provider?: Prisma.UserUpdateOneRequiredWithoutGearsNestedInput
@@ -769,6 +805,7 @@ export type GearUncheckedUpdateWithoutReviewsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutGearNestedInput
@@ -779,6 +816,7 @@ export type GearCreateWithoutProviderInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutGearsInput
@@ -792,6 +830,7 @@ export type GearUncheckedCreateWithoutProviderInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutGearInput
@@ -830,6 +869,7 @@ export type GearCreateManyCategoryInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
 }
@@ -839,6 +879,7 @@ export type GearUpdateWithoutCategoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   provider?: Prisma.UserUpdateOneRequiredWithoutGearsNestedInput
@@ -852,6 +893,7 @@ export type GearUncheckedUpdateWithoutCategoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutGearNestedInput
@@ -864,6 +906,7 @@ export type GearUncheckedUpdateManyWithoutCategoryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -874,6 +917,7 @@ export type GearCreateManyProviderInput = {
   name: string
   price_per_day: runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock: number
+  is_available?: boolean
   created_At?: Date | string
   updated_At?: Date | string
 }
@@ -883,6 +927,7 @@ export type GearUpdateWithoutProviderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   category?: Prisma.CategoryUpdateOneRequiredWithoutGearsNestedInput
@@ -896,6 +941,7 @@ export type GearUncheckedUpdateWithoutProviderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutGearNestedInput
@@ -908,6 +954,7 @@ export type GearUncheckedUpdateManyWithoutProviderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price_per_day?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   available_stock?: Prisma.IntFieldUpdateOperationsInput | number
+  is_available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_At?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -959,6 +1006,7 @@ export type GearSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   price_per_day?: boolean
   available_stock?: boolean
+  is_available?: boolean
   created_At?: boolean
   updated_At?: boolean
   provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -975,6 +1023,7 @@ export type GearSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   price_per_day?: boolean
   available_stock?: boolean
+  is_available?: boolean
   created_At?: boolean
   updated_At?: boolean
   provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -988,6 +1037,7 @@ export type GearSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   price_per_day?: boolean
   available_stock?: boolean
+  is_available?: boolean
   created_At?: boolean
   updated_At?: boolean
   provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1001,11 +1051,12 @@ export type GearSelectScalar = {
   name?: boolean
   price_per_day?: boolean
   available_stock?: boolean
+  is_available?: boolean
   created_At?: boolean
   updated_At?: boolean
 }
 
-export type GearOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "provider_id" | "category_id" | "name" | "price_per_day" | "available_stock" | "created_At" | "updated_At", ExtArgs["result"]["gear"]>
+export type GearOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "provider_id" | "category_id" | "name" | "price_per_day" | "available_stock" | "is_available" | "created_At" | "updated_At", ExtArgs["result"]["gear"]>
 export type GearInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
@@ -1037,6 +1088,7 @@ export type $GearPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     price_per_day: runtime.Decimal
     available_stock: number
+    is_available: boolean
     created_At: Date
     updated_At: Date
   }, ExtArgs["result"]["gear"]>
@@ -1472,6 +1524,7 @@ export interface GearFieldRefs {
   readonly name: Prisma.FieldRef<"Gear", 'String'>
   readonly price_per_day: Prisma.FieldRef<"Gear", 'Decimal'>
   readonly available_stock: Prisma.FieldRef<"Gear", 'Int'>
+  readonly is_available: Prisma.FieldRef<"Gear", 'Boolean'>
   readonly created_At: Prisma.FieldRef<"Gear", 'DateTime'>
   readonly updated_At: Prisma.FieldRef<"Gear", 'DateTime'>
 }

@@ -922,6 +922,7 @@ export const GearScalarFieldEnum = {
   name: 'name',
   price_per_day: 'price_per_day',
   available_stock: 'available_stock',
+  is_available: 'is_available',
   created_At: 'created_At',
   updated_At: 'updated_At'
 } as const
@@ -1068,6 +1069,13 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

@@ -92,6 +92,7 @@ export const GearScalarFieldEnum = {
   name: 'name',
   price_per_day: 'price_per_day',
   available_stock: 'available_stock',
+  is_available: 'is_available',
   created_At: 'created_At',
   updated_At: 'updated_At'
 } as const
