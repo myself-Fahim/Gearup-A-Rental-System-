@@ -38,6 +38,8 @@ export type PaymentProvider = (typeof PaymentProvider)[keyof typeof PaymentProvi
 export const Order_Status = {
   CONFIRM: 'CONFIRM',
   PENDING: 'PENDING',
+  PICKED_UP: 'PICKED_UP',
+  RETURNED: 'RETURNED',
   CANCELED: 'CANCELED'
 } as const
 
@@ -51,3 +53,11 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const User_status = {
+  suspend: 'suspend',
+  activate: 'activate'
+} as const
+
+export type User_status = (typeof User_status)[keyof typeof User_status]

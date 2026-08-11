@@ -4,17 +4,23 @@ enum Role {
     ADMIN
 }
 
-model User {
-    id String @id @default(uuid())
-    name String
-    email String @unique
-    password String
-    role   Role @default(CUSTOMER)
-    image_url String?
-    created_At DateTime @default(now())
-    updated_At DateTime @updatedAt
+enum User_status {
+    suspend
+    activate
+}
 
-    gears Gear[]
-    orders Order[]
+model User {
+    id         String      @id @default(uuid())
+    name       String
+    email      String      @unique
+    password   String
+    role       Role        @default(CUSTOMER)
+    status     User_status @default(activate)
+    image_url  String?
+    created_At DateTime    @default(now())
+    updated_At DateTime    @updatedAt
+
+    gears   Gear[]
+    orders  Order[]
     reviews Review[]
 }

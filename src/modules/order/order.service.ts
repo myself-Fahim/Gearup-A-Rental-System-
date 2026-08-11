@@ -1,7 +1,7 @@
 import { da, tr } from "zod/locales"
 import prisma from "../../lib/prisma"
 import { AppError } from "../../utils/app-error"
-import type { CreateOrderInput } from "./order.validation"
+import type { CreateOrderInput, UpdateOrderStatusInput } from "./order.validation"
 import { gearService } from "../gear/gear.service"
 import { includes } from "zod"
 
@@ -12,33 +12,62 @@ const getMyOrder = async (customer_id: string) => {
         },
         include: {
             gear: {
-                select:{
-                    name:true,
+                select: {
+                    name: true,
                 }
             }
         }
 
     })
 
+    if (myOrder.length == 0 || !myOrder) {
+        throw new AppError(404, 'No order found')
+    }
+    else
+        return myOrder
+
+}
+const getProviderOrder = async (providerID: string) => {
+    const myOrder = await prisma.order.findMany({
+        where: {
+            gear: {
+                provider_id: providerID
+            }
+        },
+        include: {
+            customer: {
+                select: {
+                    name: true,
+                    email: true
+                }
+            }
+        }
+
+
+    })
+    if (!myOrder || myOrder.length == 0) {
+        throw new AppError(404, 'No incoming order')
+    }
     return myOrder
 
 }
 
-const getOrderById = async(id :string ) =>{
+const getOrderById = async (id: string) => {
     const order = await prisma.order.findUnique({
-        where:{
+        where: {
             id
         },
-        include:{
-            gear:true
+        include: {
+            gear: true
         }
     })
+    if (!order) {
+        throw new AppError(404, `Order doesn't exist`)
+    }
     return order
 }
 
-// const getGearCategories = async() =>{
 
-// }
 
 const createOrder = async (order: CreateOrderInput, customer_id: string) => {
     const gear = await gearService.getGearById(order.gear_id)
@@ -82,16 +111,53 @@ const createOrder = async (order: CreateOrderInput, customer_id: string) => {
 
 }
 
-// const updateGear = async(data : UpdateGearInput , id:string) =>{
+const updateOrderStatus = async (orderID: string, providerID: string, data: UpdateOrderStatusInput) => {
+    const order = await prisma.order.findUnique({
+        where: {
+            id: orderID
+        }
+    })
+
+    if (!order) {
+        throw new AppError(404, "Order doesn't exist")
+    }
+
+    const providerOrder = await prisma.order.findFirst({
+        where: {
+            id: orderID,
+            gear: {
+                provider_id: providerID
+            }
+        }
+    })
+
+    if(!providerOrder){
+        throw new AppError(404, "Only gear owner can update the status")
+    }
+
+    const updateOrder = await prisma.order.update({
+        where: {
+            id: orderID
+        },
+        data: {
+            status: data.status
+        }
+    })
+    return updateOrder
 
 
-// }
+}
+
+
+
 
 
 
 export const orderService = {
     createOrder,
     getMyOrder,
-    getOrderById
+    getOrderById,
+    getProviderOrder,
+    updateOrderStatus
 
 }

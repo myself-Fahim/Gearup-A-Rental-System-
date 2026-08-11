@@ -1,6 +1,8 @@
 enum Order_Status {
     CONFIRM
     PENDING
+    PICKED_UP
+    RETURNED
     CANCELED
 }
 
