@@ -1,11 +1,12 @@
 import jwt from "jsonwebtoken";
-import type { Role } from "../../prisma/generated/prisma/enums";
+import type { Role, User_status } from "../../prisma/generated/prisma/enums";
 import config from "../config";
 
 export type UserJwtPayload = {
   id: string;
   email: string;
   role: Role;
+  status: User_status
 };
 
 export function signAccessToken(payload: UserJwtPayload) {
@@ -13,7 +14,7 @@ export function signAccessToken(payload: UserJwtPayload) {
 }
 
 export function signRefreshToken(payload: UserJwtPayload) {
-return jwt.sign(payload, config.jwt_refresh_key, { expiresIn: "15d" });
+  return jwt.sign(payload, config.jwt_refresh_key, { expiresIn: "15d" });
 }
 
 export function createTokenPair(payload: UserJwtPayload) {

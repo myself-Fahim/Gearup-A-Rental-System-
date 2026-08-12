@@ -19,6 +19,11 @@ export const auth = (...roles : Role[]) =>{
             if(roles.length && !roles.includes(decoded.role)){
                 throw new AppError(401,"Unauthorized access")
             }
+
+            if(decoded.status == 'suspend'){
+                throw new AppError(400,'User is suspended')
+            }
+
             req.user = decoded 
             next();
         }

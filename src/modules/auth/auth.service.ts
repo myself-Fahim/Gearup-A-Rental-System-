@@ -1,4 +1,3 @@
-import { use } from "react";
 import prisma from "../../lib/prisma";
 import { AppError } from "../../utils/app-error";
 import { createTokenPair } from "../../utils/jwt";
@@ -45,6 +44,7 @@ const loginUser =async(input: LoginInput)=> {
     name: user.name,
     email: user.email,
     role: user.role,
+    status : user.status,
     imageURL : user.image_url ?? null,
     createdAt: user.created_At,
     updatedAt: user.updated_At,
@@ -52,7 +52,7 @@ const loginUser =async(input: LoginInput)=> {
 
   return {
     user: safeUser,
-    ...createTokenPair({ email: user.email, id: user.id, role: user.role }),
+    ...createTokenPair({ email: user.email, id: user.id, role: user.role,status:user.status }),
   };
 }
 
@@ -76,9 +76,6 @@ const myProfile = async(userId : string) =>{
 
 
 }
-
-
-
 
 export const authService = {
     registerUser,
