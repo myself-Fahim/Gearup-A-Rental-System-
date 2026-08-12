@@ -4,6 +4,7 @@ import { globarErrorHandler } from './middleware/global-error';
 import { authRouter } from './modules/auth/auth.route';
 import { gearRouter } from './modules/gear/gear.route';
 import { orderRoute } from './modules/order/order.route';
+import { reviewRouter } from './modules/review/review.route';
 const app: Application = express();
 app.use(express.json())
 
@@ -15,6 +16,7 @@ app.get('/',  (req, res) => {
 app.use('/api/auth',authRouter)
 app.use('/api/gear',gearRouter)
 app.use('/api/orders',orderRoute)
+app.use('/api/reviews',reviewRouter)
 
 app.use(globarErrorHandler)
 app.use(not_found)
