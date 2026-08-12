@@ -1,11 +1,34 @@
 import { da } from "zod/locales"
 import prisma from "../../lib/prisma"
 import { AppError } from "../../utils/app-error"
-import type { CreateGearInput, UpdateGearInput } from "./gear.validation"
+import type { allGearFilterParams, CreateGearInput, UpdateGearInput } from "./gear.validation"
 
-const getAllGear = async() =>{
-    const gears = await prisma.gear.findMany()
-    return gears 
+const getAllGear = async(filterParams : allGearFilterParams) =>{
+    const{category_id , max_price,min_price} = filterParams;
+    const gears = await prisma.gear.findMany({
+        where:{
+            ...(category_id && {
+                category_id
+            }),
+            ...(max_price !== undefined || min_price !== undefined?{
+                price_per_day:{
+                    ...(min_price!==undefined && {
+                        gte:min_price
+                    }),
+                    ...(max_price!==undefined && {
+                        lte:max_price
+                    })
+                }
+
+            }:{})
+        }
+    })
+
+    if(!gears || gears.length == 0){
+        throw new AppError(404,"No data found")
+    }
+    return gears
+    
 }
 
 const getGearById = async(id :string ) =>{

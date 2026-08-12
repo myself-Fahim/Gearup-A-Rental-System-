@@ -12,9 +12,16 @@ export const updateGearSchema = z.object({
     available_stock : z.int().optional()
 })
 
+export const allGearFilteringSchema = z.object({
+    category_id : z.uuid().optional(),
+    max_price : z.coerce.number().optional(),
+    min_price : z.coerce.number().optional(),
+})
+
 
 export type CreateGearInput = z.infer<typeof createGearSchema>
 export type UpdateGearInput = z.infer<typeof updateGearSchema>
+export type allGearFilterParams = z.infer<typeof allGearFilteringSchema>
 
 
 

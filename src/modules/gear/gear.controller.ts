@@ -3,12 +3,13 @@ import type { Request, Response } from 'express'
 import { gearService } from "./gear.service"
 import { SendResponse } from "../../utils/send-response"
 import z from "zod"
-import { createGearSchema, updateGearSchema } from "./gear.validation"
+import { allGearFilteringSchema, createGearSchema, updateGearSchema } from "./gear.validation"
 import { da, tr } from "zod/locales"
 
 
 const getAllGear = CatchAsync(async (req: Request, res: Response) => {
-    const result = await gearService.getAllGear()
+    const filterType = allGearFilteringSchema.parse(req.query)
+    const result = await gearService.getAllGear(filterType)
     SendResponse(res, 200, {
         success: true,
         message: "Gears retrieve successfully",
