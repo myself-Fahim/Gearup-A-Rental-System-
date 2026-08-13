@@ -18,6 +18,18 @@ const getAllGear = CatchAsync(async (req: Request, res: Response) => {
 
 })
 
+const getAllGearForAdmin = CatchAsync(async (req: Request, res: Response) => {
+    const result = await gearService.getAllGearForAdmin()
+    SendResponse(res, 200, {
+        success: true,
+        message: "Gears retrieve successfully",
+        data: result
+    })
+
+})
+
+
+
 const getGearIdSchema = z.object({
     id: z.uuid()
 })
@@ -78,7 +90,8 @@ export const gearController = {
     getGearById,
     createGear,
     updateGearById,
-    deleteGearById
+    deleteGearById,
+    getAllGearForAdmin
 }
 
 

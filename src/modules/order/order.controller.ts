@@ -6,6 +6,20 @@ import z from "zod"
 import { SendResponse } from "../../utils/send-response"
 import { id } from "zod/locales"
 
+const getAllOrder = CatchAsync(async (req: Request, res: Response) => {
+
+    const result = await orderService.getAllOrder()
+    SendResponse(res, 200,
+        {
+            success: true,
+            message: "Order retrieve successfully",
+            data: result
+        })
+})
+
+
+
+
 
 
 const createOrder = CatchAsync(async (req: Request, res: Response) => {
@@ -72,5 +86,6 @@ export const orderController = {
     getMyOrder,
     getOrderById,
     getProviderOrder,
-    updateOrderStatusByProvider
+    updateOrderStatusByProvider,
+    getAllOrder
 }

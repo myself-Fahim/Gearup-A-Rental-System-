@@ -4,6 +4,8 @@ import { Role } from "../../../prisma/generated/prisma/enums"
 import { auth } from "../../middleware/auth"
 
 const router = Router()
+
+router.get('/',auth(Role.ADMIN),orderController.getAllOrder)
 router.get('/myorder',auth(Role.CUSTOMER),orderController.getMyOrder)
 router.post('/',auth(Role.CUSTOMER),orderController.createOrder)
 router.get('/provider/orders',auth(Role.PROVIDER),orderController.getProviderOrder) 

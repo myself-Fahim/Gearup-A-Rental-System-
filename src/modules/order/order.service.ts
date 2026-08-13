@@ -5,6 +5,14 @@ import type { CreateOrderInput, UpdateOrderStatusInput } from "./order.validatio
 import { gearService } from "../gear/gear.service"
 import { includes } from "zod"
 
+
+
+const getAllOrder = async() =>{
+    const orders = await prisma.order.findMany()
+    return orders;
+
+}
+
 const getMyOrder = async (customer_id: string) => {
     const myOrder = await prisma.order.findMany({
         where: {
@@ -158,6 +166,7 @@ export const orderService = {
     getMyOrder,
     getOrderById,
     getProviderOrder,
-    updateOrderStatus
+    updateOrderStatus,
+    getAllOrder
 
 }

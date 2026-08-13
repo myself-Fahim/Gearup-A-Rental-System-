@@ -30,6 +30,26 @@ const getAllGear = async(filterParams : allGearFilterParams) =>{
     return gears
     
 }
+const getAllGearForAdmin = async() =>{
+    
+    const gears = await prisma.gear.findMany({
+        include:{
+            provider:{
+                select:{
+                    name:true
+                }
+            },
+            category:{
+                select:{
+                    name:true
+                }
+            }
+        }
+    })
+
+    return gears
+    
+}
 
 const getGearById = async(id :string ) =>{
     const gear = await prisma.gear.findUnique({
@@ -122,5 +142,6 @@ export const gearService = {
     getGearCategories,
     createGear,
     updateGear,
-    deleteGear
+    deleteGear,
+    getAllGearForAdmin
 }
