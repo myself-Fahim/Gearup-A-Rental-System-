@@ -9,7 +9,7 @@ model Gear {
     created_At      DateTime @default(now())
     updated_At      DateTime @updatedAt
 
-    provider User     @relation(fields: [provider_id], references: [id])
+    provider User     @relation(fields: [provider_id], references: [id] , onDelete: Cascade)
     category Category @relation(fields: [category_id], references: [id])
 
     orders Order[]

@@ -60,7 +60,28 @@ const createGear = async(gear:CreateGearInput,providerId:string) =>{
     return gear_create
 
 }
-const updateGear = async(data : UpdateGearInput , id:string) =>{
+const updateGear = async(data : UpdateGearInput , id:string,providerID:string) =>{
+    const gear = await prisma.gear.findUnique({
+        where:{
+            id
+        }
+    })
+
+    if(!gear){
+        throw new AppError(404,'Gear not found')
+    }
+
+    const validProvider = await prisma.gear.findUnique({
+        where:{
+            id,
+            provider_id:providerID
+        }
+    })
+
+    if(!validProvider){
+        throw new AppError(400,'Only owner can update gear')
+    }
+
     const updateGear = await prisma.gear.update({
         where:{
             id
@@ -71,7 +92,19 @@ const updateGear = async(data : UpdateGearInput , id:string) =>{
     return updateGear
 
 }
-const deleteGear = async(id:string) =>{
+const deleteGear = async(id:string,providerID:string) =>{
+
+    const validProvider = await prisma.gear.findUnique({
+        where:{
+            id,
+            provider_id:providerID
+        }
+    })
+
+    if(!validProvider){
+        throw new AppError(400,"Only owner can delete gear")
+    }
+    
     const removeGear = await prisma.gear.delete({
         where:{
             id

@@ -53,7 +53,7 @@ const createGear = CatchAsync(async(req: Request, res: Response) => {
 const updateGearById = CatchAsync(async(req: Request, res: Response) => {
     const data = updateGearSchema.parse(req.body)
     const {id} = getGearIdSchema.parse(req.params)
-    const result = await gearService.updateGear(data,id)
+    const result = await gearService.updateGear(data,id,req.user!.id)
       SendResponse(res, 200, {
         success: true,
         message: "Gear updated successfully",
@@ -64,7 +64,7 @@ const updateGearById = CatchAsync(async(req: Request, res: Response) => {
 
 const deleteGearById = CatchAsync(async(req: Request, res: Response) => {
     const {id} = getGearIdSchema.parse(req.params)
-    const result = await gearService.deleteGear(id)
+    const result = await gearService.deleteGear(id,req.user!.id)
     SendResponse(res, 200, {
         success: true,
         message: "Gear deleted successfully",

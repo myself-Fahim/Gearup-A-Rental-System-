@@ -30,12 +30,10 @@ const loginUser = CatchAsync(async (req: Request, res: Response) => {
 
 })
 
-const myProfileSchema = z.uuid()
-
 const myProfile = CatchAsync(async (req: Request, res: Response) => {
     
-    const id = myProfileSchema.parse(req.user?.id)
-    const result = await authService.myProfile(id)
+
+    const result = await authService.myProfile(req.user!.id)
     SendResponse(res, 200,
         {
             success: true,

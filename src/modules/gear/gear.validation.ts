@@ -9,7 +9,8 @@ export const createGearSchema = z.object({
 export const updateGearSchema = z.object({
     name : z.string().optional(),
     price_per_day: z.number().positive().optional(),
-    available_stock : z.int().optional()
+    available_stock : z.int().optional(),
+    is_available : z.boolean().optional()
 })
 
 export const allGearFilteringSchema = z.object({

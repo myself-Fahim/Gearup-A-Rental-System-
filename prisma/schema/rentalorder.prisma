@@ -18,8 +18,8 @@ model Order {
   created_At   DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  customer     User     @relation(fields: [customer_id], references: [id])
-  gear         Gear     @relation(fields: [gear_id], references: [id])
+  customer     User     @relation(fields: [customer_id], references: [id],onDelete: Cascade)
+  gear         Gear     @relation(fields: [gear_id], references: [id],onDelete:Cascade)
 
   payments Payment[]
 }
