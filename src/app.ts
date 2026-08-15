@@ -10,10 +10,12 @@ import paymentRouter from './modules/payment/payment.route';
 import { paymentController } from './modules/payment/payment.controller';
 import cookieParser from "cookie-parser";
 import { categoryRouter } from './modules/category/category.route';
+import cors from 'cors'
 
 const app: Application = express();
 
 app.post("/payments/webhook", express.raw({ type: "application/json" }),paymentController.webhook);
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser());
 
