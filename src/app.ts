@@ -8,11 +8,14 @@ import { reviewRouter } from './modules/review/review.route';
 import { userRouter } from './modules/user/user.route';
 import paymentRouter from './modules/payment/payment.route';
 import { paymentController } from './modules/payment/payment.controller';
+import cookieParser from "cookie-parser";
+import { categoryRouter } from './modules/category/category.route';
 
 const app: Application = express();
 
 app.post("/payments/webhook", express.raw({ type: "application/json" }),paymentController.webhook);
 app.use(express.json())
+app.use(cookieParser());
 
 
 app.get('/',  (req, res) => {
@@ -25,6 +28,7 @@ app.use('/api/orders',orderRoute)
 app.use('/api/reviews',reviewRouter)
 app.use('/api/user',userRouter)
 app.use('/api/payments',paymentRouter)
+app.use('/api/categories',categoryRouter)
 
 app.use(globarErrorHandler)
 app.use(not_found)

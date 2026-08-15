@@ -10,7 +10,7 @@ model Gear {
     updated_At      DateTime @updatedAt
 
     provider User     @relation(fields: [provider_id], references: [id] , onDelete: Cascade)
-    category Category @relation(fields: [category_id], references: [id])
+    category Category @relation(fields: [category_id], references: [id],onDelete: Cascade)
 
     orders Order[]
     reviews Review[]
