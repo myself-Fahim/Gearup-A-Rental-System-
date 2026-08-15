@@ -8,7 +8,10 @@ const config = {
     port : env.PORT,
     database_string : env.DATABASE_URL,
     jwt_secret_key : env.JWT_ACCESS_SECRET!,
-    jwt_refresh_key : env.JWT_REFRESH_SECRET!
+    jwt_refresh_key : env.JWT_REFRESH_SECRET!,
+    stripe_secret_key: env.STRIPE_SECRET_KEY!,
+    stripe_webhook_secret : env.STRIPE_WEBHOOK_SECRET!,
+    base_url : env.BASE_URL
 
 }
 

@@ -6,7 +6,12 @@ import { gearRouter } from './modules/gear/gear.route';
 import { orderRoute } from './modules/order/order.route';
 import { reviewRouter } from './modules/review/review.route';
 import { userRouter } from './modules/user/user.route';
+import paymentRouter from './modules/payment/payment.route';
+import { paymentController } from './modules/payment/payment.controller';
+
 const app: Application = express();
+
+app.post("/payments/webhook", express.raw({ type: "application/json" }),paymentController.webhook);
 app.use(express.json())
 
 
@@ -19,6 +24,7 @@ app.use('/api/gear',gearRouter)
 app.use('/api/orders',orderRoute)
 app.use('/api/reviews',reviewRouter)
 app.use('/api/user',userRouter)
+app.use('/api/payments',paymentRouter)
 
 app.use(globarErrorHandler)
 app.use(not_found)

@@ -8,7 +8,8 @@
     "build": "prisma generate && tsup",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:seed": "prisma db seed"
+    "db:seed": "prisma db seed",
+    "webhook:stripe": "stripe listen --forward-to localhost:3000/payments/webhook"
   },
   "keywords": [],
   "author": "",
