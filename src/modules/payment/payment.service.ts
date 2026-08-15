@@ -43,8 +43,8 @@ const createCheckoutSession =async(
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     metadata: { orderId: order.id },
-    success_url: `${config.base_url}/payment/success`,
-    cancel_url: `${config.base_url}/payment/cancel`,
+    success_url: `${config.client_base_url}/payment/success`,
+    cancel_url: `${config.client_base_url}/payment/cancel`,
     line_items: [
       {
         quantity: 1,
