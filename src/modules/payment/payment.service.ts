@@ -44,7 +44,7 @@ const createCheckoutSession =async(
     mode: "payment",
     metadata: { orderId: order.id },
     success_url: `${config.base_url}/payment/success`,
-    cancel_url: `http://localhost:3000/payment/cancel`,
+    cancel_url: `${config.base_url}/payment/cancel`,
     line_items: [
       {
         quantity: 1,
