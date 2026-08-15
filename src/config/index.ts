@@ -11,7 +11,7 @@ const config = {
     jwt_refresh_key : env.JWT_REFRESH_SECRET!,
     stripe_secret_key: env.STRIPE_SECRET_KEY!,
     stripe_webhook_secret : env.STRIPE_WEBHOOK_SECRET!,
-    client_base_url : env.BASE_URL
+    client_base_url : env.CLIENT_BASE_URL
 
 }
 
